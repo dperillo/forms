@@ -42,7 +42,14 @@ def contact():
     """ % (form.name.data, form.email.data, form.message.data)
     mail.send(msg)
 
-    return "form posted"
+    print "Information posted!"
+
+    form.name.data = ''
+    form.email.data = ''
+    form.subject.data = ''
+    form.message.data = 'Information posted!'
+
+    return render_template('contact.html', form =form)
  
   elif request.method == 'GET':
     return render_template('contact.html', name = "contact", title = "CONTACT", form=form)
